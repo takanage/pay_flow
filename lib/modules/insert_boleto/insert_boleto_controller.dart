@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
+
 class InsertBoletoController {
+  final formkey = GlobalKey<FormState>();
   String? validateName(String? value) =>
       value?.isEmpty ?? true ? "O nome não pode ser vazio" : null;
   String? validateVencimento(String? value) =>
@@ -8,4 +11,8 @@ class InsertBoletoController {
   String? validateCodigo(String? value) =>
       value?.isEmpty ?? true ? "O código do boleto não pode ser vazio" : null;
 
+  void cadastrarBoleto() {
+    final form = formkey.currentState;
+    if(form!.validate()) {}
+  }
 }
