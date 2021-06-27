@@ -69,14 +69,18 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                       label: "Nome do boleto",
                       icon: Icons.description_outlined,
                       validator: controller.validateName,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        controller.onChanged(name: value);
+                      },
                     ),
                     InputTextWidget(
                       controller: dueDateTextController,
                       label: "Vencimento",
                       icon: FontAwesomeIcons.timesCircle,
                       validator: controller.validateVencimento,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        controller.onChanged(dueDate: value);
+                      },
                     ),
                     InputTextWidget(
                       controller: moneyInputTextController,
@@ -84,14 +88,20 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
                       icon: FontAwesomeIcons.wallet,
                       validator: (_) => controller
                           .validateValor(moneyInputTextController.numberValue),
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        controller.onChanged(
+                          value: moneyInputTextController.numberValue,
+                        );
+                      },
                     ),
                     InputTextWidget(
                       controller: barcodeIntupTextController,
                       label: "Código",
                       icon: FontAwesomeIcons.barcode,
                       validator: controller.validateCodigo,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        controller.onChanged(barcode: value);
+                      },
                     ),
                   ],
                 ),
@@ -107,8 +117,9 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
           Navigator.pop(context);
         },
         secondaryLabel: 'Cadastrar',
-        secondaryOnPressed: () {
-          controller.cadastrarBoleto();
+        secondaryOnPressed: () async {
+          await controller.cadastrarBoleto();
+          Navigator.pop(context);
         },
       ),
     );
