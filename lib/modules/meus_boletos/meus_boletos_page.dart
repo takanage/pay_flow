@@ -1,3 +1,4 @@
+import 'package:animated_card/animated_card.dart';
 import 'package:flutter/material.dart';
 import 'package:payflow/shared/models/boleto_model.dart';
 import 'package:payflow/shared/themes/app_colors.dart';
@@ -33,7 +34,9 @@ class _MeusBoletosPageState extends State<MeusBoletosPage> {
                 child: ValueListenableBuilder<List<BoletoModel>>(
                   valueListenable: controller.boletosNotifier,
                   builder: (_, boletos, __) =>
-                      BoletoInfoWidget(size: boletos.length),
+                      AnimatedCard(
+                        direction: AnimatedCardDirection.top,
+                      child: BoletoInfoWidget(size: boletos.length)),
                 ),
               ),
             ],
